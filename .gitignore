@@ -1,0 +1,82 @@
+# @author    MagedIn Developers Team <developers@magedin.com>
+
+#--------------------------#
+# Global Files Types       #
+#--------------------------#
+.svn*
+*.bkp
+*.old
+js_bkp/
+js.old/
+sitemap.xml
+*.log
+*.sql
+*.tar.*
+*.gz
+*.rar
+*.zip
+*.bz2
+*.bz
+*.tgz
+*.gzip
+*.tb2
+*.tbz2
+*.pdf
+*.log
+*.swm
+*.swn
+*.swp
+*.swo
+.DS_Store
+/vendor/*
+
+
+#--------------------------#
+# IDE Project Files/Folder #
+#--------------------------#
+/nbproject/
+/.idea/
+
+#--------------------------#
+# XDebug Extension         #
+#--------------------------#
+remote_log
+
+
+#--------------------------#
+# NGinx Specific Ignores   #
+#--------------------------#
+50x.html
+404.html
+
+
+#--------------------------#
+# Magento Specific Ignores #
+#--------------------------#
+/app/etc/local.xml
+/app/code/local/Zend/
+/app/code/local/Varien/
+/downloader/.cache/
+/downloader/cache.cfg
+/downloader/connect.cfg
+/includes/src/*
+!/includes/src/.htaccess
+/var/*
+!/var/.htaccess
+/media/*
+!/media/.htaccess
+/sitemap/
+.magentointel-cache/
+README_VARNISH_CACHE.txt
+index.php.sample
+php.ini.sample
+
+
+#--------------------------#
+# Specific Ignores #
+#--------------------------#
+gitautoupdate.flag
+/stuff
+**/.sass-cache/*
+node_modules
+
