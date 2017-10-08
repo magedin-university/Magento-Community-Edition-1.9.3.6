@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_HTTPResponse>
+            <version>0.1.0</version>
+        </MagedIn_HTTPResponse>
+    </modules>
+    <frontend>
+        <routers>
+            <magedin_httpresponse>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_HTTPResponse</module>
+                    <frontName>response</frontName>
+                </args>
+            </magedin_httpresponse>
+        </routers>
+        <events>
+            <controller_action_predispatch_magedin_httpresponse_index_redirectThroughObserver>
+                <observers>
+                    <magedin_httpresponse>
+                        <class>MagedIn_HTTPResponse_Model_Observer</class>
+                        <method>forceRedirect</method>
+                    </magedin_httpresponse>
+                </observers>
+            </controller_action_predispatch_magedin_httpresponse_index_redirectThroughObserver>
+        </events>
+    </frontend>
+</config>
