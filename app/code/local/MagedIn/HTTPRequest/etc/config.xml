@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_HTTPRequest>
+            <version>0.1.0</version>
+        </MagedIn_HTTPRequest>
+    </modules>
+    <frontend>
+        <routers>
+            <magedin_httprequest>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_HTTPRequest</module>
+                    <frontName>httpRequest</frontName>
+                </args>
+            </magedin_httprequest>
+        </routers>
+    </frontend>
+</config>
