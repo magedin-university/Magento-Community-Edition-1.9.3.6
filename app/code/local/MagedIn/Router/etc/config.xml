@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_Router>
+            <version>0.1.0</version>
+        </MagedIn_Router>
+    </modules>
+    <global>
+        <helpers>
+            <magedin_router>
+                <class>MagedIn_Router_Helper</class>
+            </magedin_router>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <magedin_router>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_Router</module>
+                    <frontName>router</frontName>
+                </args>
+            </magedin_router>
+        </routers>
+    </frontend>
+    <default>
+        <web>
+            <routers>
+                <magedin_router>
+                    <area>frontend</area>
+                    <class>MagedIn_Router_Controller_Router</class>
+                </magedin_router>
+            </routers>
+        </web>
+    </default>
+</config>
