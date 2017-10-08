@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_Objects>
+            <version>0.1.0</version>
+        </MagedIn_Objects>
+    </modules>
+    <global>
+        <helpers>
+            <magedin_objects>
+                <class>MagedIn_Objects_Helper</class>
+            </magedin_objects>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <magedin_objects>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_Objects</module>
+                    <frontName>objects</frontName>
+                </args>
+            </magedin_objects>
+        </routers>
+        <translate>
+            <modules>
+                <magedin_objects>
+                    <files>
+                        <default>MagedIn/Objects.csv</default>
+                    </files>
+                </magedin_objects>
+            </modules>
+        </translate>
+    </frontend>
+</config>
