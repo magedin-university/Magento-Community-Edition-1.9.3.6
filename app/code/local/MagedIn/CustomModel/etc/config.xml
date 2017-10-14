@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_CustomModel>
+            <version>0.1.0</version>
+        </MagedIn_CustomModel>
+    </modules>
+    <frontend>
+        <routers>
+            <magedin_custommodel>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_CustomModel</module>
+                    <frontName>models</frontName>
+                </args>
+            </magedin_custommodel>
+        </routers>
+    </frontend>
+</config>
