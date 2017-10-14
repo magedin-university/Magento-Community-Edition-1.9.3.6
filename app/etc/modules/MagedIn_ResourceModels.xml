@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_ResourceModels>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Core/>
+                <Mage_Cms/>
+            </depends>
+        </MagedIn_ResourceModels>
+    </modules>
+</config>

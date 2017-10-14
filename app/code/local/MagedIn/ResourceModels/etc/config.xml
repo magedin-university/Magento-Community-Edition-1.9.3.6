@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_ResourceModels>
+            <version>0.1.0</version>
+        </MagedIn_ResourceModels>
+    </modules>
+    <global>
+        <models>
+            <magedin_resourcemodels>
+                <class>MagedIn_ResourceModels_Model</class>
+                <resourceModel>magedin_resourcemodels_resource</resourceModel>
+            </magedin_resourcemodels>
+            <magedin_resourcemodels_resource>
+                <class>MagedIn_ResourceModels_Model_Resource</class>
+            </magedin_resourcemodels_resource>
+        </models>
+    </global>
+    <frontend>
+        <routers>
+            <magedin_resourcemodels>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_ResourceModels</module>
+                    <frontName>resourceModels</frontName>
+                </args>
+            </magedin_resourcemodels>
+        </routers>
+    </frontend>
+</config>
