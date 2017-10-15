@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_CustomHelpers>
+            <version>0.1.0</version>
+        </MagedIn_CustomHelpers>
+    </modules>
+    <global>
+        <helpers>
+            <magedin_customhelpers>
+                <class>MagedIn_CustomHelpers_Helper</class>
+            </magedin_customhelpers>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <magedin_customhelpers>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_CustomHelpers</module>
+                    <frontName>customHelpers</frontName>
+                </args>
+            </magedin_customhelpers>
+        </routers>
+    </frontend>
+</config>
