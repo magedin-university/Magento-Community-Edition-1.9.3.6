@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_DescribingMage>
+            <version>0.1.0</version>
+        </MagedIn_DescribingMage>
+    </modules>
+    <frontend>
+        <routers>
+            <magedin_describingmage>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_DescribingMage</module>
+                    <frontName>mageClass</frontName>
+                </args>
+            </magedin_describingmage>
+        </routers>
+    </frontend>
+</config>

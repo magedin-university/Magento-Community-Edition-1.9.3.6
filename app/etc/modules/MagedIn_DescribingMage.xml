@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_DescribingMage>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MagedIn_DescribingMage>
+    </modules>
+</config>
