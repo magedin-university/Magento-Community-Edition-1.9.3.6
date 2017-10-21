@@ -22,5 +22,14 @@
                 </args>
             </magedin_customhelpers>
         </routers>
+        <translate>
+            <modules>
+                <magedin_customhelpers>
+                    <files>
+                        <default>MagedIn/CustomerHelpers.csv</default>
+                    </files>
+                </magedin_customhelpers>
+            </modules>
+        </translate>
     </frontend>
 </config>
