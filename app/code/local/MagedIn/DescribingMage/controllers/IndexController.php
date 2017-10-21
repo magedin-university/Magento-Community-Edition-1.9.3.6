@@ -84,4 +84,63 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
         $moduleModel       = Mage::getModuleDir('model', 'Mage_Core');
     }
 
+
+    /**
+     * Playing around with URL generation.
+     */
+    public function generateUrlAction()
+    {
+        $productId  = 123;
+        $categoryId = 3;
+
+        /**
+         * Default way to retrieve frontend URLs in Magento.
+         *
+         * @var string $url
+         */
+        $url = Mage::getUrl('catalog/product/view', [
+            'product_id'  => $productId,
+            'category_id' => $categoryId
+        ]);
+
+        /**
+         * An easy way to retrieve Magento admin urls.
+         *
+         * @var Mage_Core_Model_Store $store
+         */
+        $store = Mage::app()->getStore('admin');
+        $url   = $store->getUrl('adminhtml/catalog_product/edit', [
+            'product_id' => $productId,
+            'category_id' => $categoryId
+        ]);
+
+        /**
+         * This is the main object to generate URLs in Magento.
+         *
+         * @var Mage_Core_Model_Url $urlModel
+         */
+        $urlModel = Mage::getSingleton('core/url');
+
+        /**
+         * We didn't set the Store Model to URL Model, consequently it will use the current store to generate URLs.
+         *
+         * @var string $urlFrontend
+         */
+        $urlFrontend = $urlModel->getUrl('catalog/product/view', [
+            'product_id'  => $productId,
+            'category_id' => $categoryId
+        ]);
+
+        /**
+         * Setting the Admin Store model to URL Model so all the URLs generated after will be admin urls.
+         */
+        $urlModel->setStore($store);
+
+        /** @var string $urlAdmin */
+        $urlAdmin = $urlModel->getUrl('adminhtml/catalog_product/edit', [
+            'product_id'  => $productId,
+            'category_id' => $categoryId
+        ]);
+    }
+
 }
