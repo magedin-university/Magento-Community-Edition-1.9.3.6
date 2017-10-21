@@ -33,4 +33,12 @@
             </controller_action_postdispatch_magedin_describingmage_index_registry>
         </events>
     </frontend>
+    <default>
+        <magedin_describingmage>
+            <settings>
+                <active>1</active>
+                <serial_key>123qwerty456</serial_key>
+            </settings>
+        </magedin_describingmage>
+    </default>
 </config>

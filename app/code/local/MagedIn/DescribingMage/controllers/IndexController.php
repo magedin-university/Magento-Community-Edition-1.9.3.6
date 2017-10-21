@@ -143,4 +143,51 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
         ]);
     }
 
+
+    /**
+     * Working with configurations.
+     */
+    public function getConfigAction()
+    {
+        /**
+         * This is the default way to retrieve the Magento configurations.
+         * But these configurations are under <default> node in config.xml file and in the database.
+         */
+        $activePath = 'magedin_describingmage/settings/active';
+        $serialPath = 'magedin_describingmage/settings/serial_key';
+
+        /** @var Mage_Core_Model_Store $store */
+        $store = Mage::app()->getStore();
+        $store->getConfig($activePath);
+        $store->getConfig($serialPath);
+
+        /**
+         * @var bool   $isActive
+         * @var string $serialKey
+         */
+        $isActive  = Mage::getStoreConfigFlag($activePath);
+        $serialKey = Mage::getStoreConfig($serialPath);
+
+
+        /**
+         * Getting an unusual configuration value.
+         *
+         * @var Mage_Core_Model_Config $config
+         */
+        $config = Mage::app()->getConfig();
+        $frontName = (string) $config->getNode('frontend/routers/magedin_describingmage/args/frontName');
+
+        /**
+         * Iterating configurations when needed.
+         */
+        $xPath     = 'frontend/events/controller_action_postdispatch_magedin_describingmage_index_registry/observers';
+        $observers = $config->getNode($xPath);
+
+        /** @var Mage_Core_Model_Config_Element $observer */
+        foreach ($observers->children() as $observer) {
+            $class  = (string) $observer->class;
+            $method = (string) $observer->method;
+        }
+    }
+
 }
