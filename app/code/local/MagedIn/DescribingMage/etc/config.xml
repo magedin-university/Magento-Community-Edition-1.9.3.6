@@ -5,6 +5,13 @@
             <version>0.1.0</version>
         </MagedIn_DescribingMage>
     </modules>
+    <global>
+        <models>
+            <magedin_describingmage>
+                <class>MagedIn_DescribingMage_Model</class>
+            </magedin_describingmage>
+        </models>
+    </global>
     <frontend>
         <routers>
             <magedin_describingmage>
@@ -15,5 +22,15 @@
                 </args>
             </magedin_describingmage>
         </routers>
+        <events>
+            <controller_action_postdispatch_magedin_describingmage_index_registry>
+                <observers>
+                    <magedin_describingmage>
+                        <class>magedin_describingmage/observer</class>
+                        <method>getRandValue</method>
+                    </magedin_describingmage>
+                </observers>
+            </controller_action_postdispatch_magedin_describingmage_index_registry>
+        </events>
     </frontend>
 </config>

@@ -33,4 +33,19 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
         $edition = (string) Mage::getEdition();
     }
 
+
+    /**
+     * Working with Magento Registry.
+     */
+    public function registryAction()
+    {
+        $rand   = (int) rand(1000, 9999);
+        $string = (string) $this->__('This is my string with a rand value: %s.', $rand);
+
+        /**
+         * Registering some value to Magento Registry. It can be any type of value.
+         */
+        Mage::register('magedin_describingmage_rand_value', $rand, true);
+    }
+
 }
