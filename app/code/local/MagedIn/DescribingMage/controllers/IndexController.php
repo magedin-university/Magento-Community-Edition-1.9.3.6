@@ -190,4 +190,30 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
         }
     }
 
+
+    public function modelAction()
+    {
+        /** @var MagedIn_DescribingMage_Model_Data $data1 */
+        $data1 = Mage::getModel('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Data $data2 */
+        $data2 = Mage::getModel('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Data $data3 */
+        $data3 = Mage::getModel('magedin_describingmage/data');
+    }
+
+
+    public function singletonAction()
+    {
+        /** @var MagedIn_DescribingMage_Model_Data $data1 */
+        $data1 = Mage::getSingleton('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Data $data2 */
+        $data2 = Mage::getSingleton('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Data $data3 */
+        $data3 = Mage::getSingleton('magedin_describingmage/data');
+    }
+
 }
