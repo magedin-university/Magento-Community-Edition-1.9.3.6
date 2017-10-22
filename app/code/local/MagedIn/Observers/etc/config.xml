@@ -22,5 +22,16 @@
                 </args>
             </magedin_observers>
         </routers>
+        <events>
+            <magedin_observers_instantiate_new_product>
+                <observers>
+                    <magedin_observers_change_product_and_customer_models>
+                        <type>singleton</type>
+                        <class>magedin_observers/observer</class>
+                        <method>changeProductAndCustomerModels</method>
+                    </magedin_observers_change_product_and_customer_models>
+                </observers>
+            </magedin_observers_instantiate_new_product>
+        </events>
     </frontend>
 </config>
