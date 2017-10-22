@@ -255,23 +255,58 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
     }
 
 
+    /**
+     * Working with exceptions in Magento.
+     */
     public function exceptionAction()
     {
+        /**
+         * Custom Exception Models.
+         */
         try {
             /** @var MagedIn_DescribingMage_Exception $instance */
             $instance = Mage::exception('MagedIn_DescribingMage', $this->__('This is an error.'), 500);
             throw $instance;
         } catch (Exception $e) {
             $message = $e->getMessage();
+
+            /**
+             * A silent mode to track exceptions: by using the log files.
+             */
             Mage::logException($e);
         }
 
+        /**
+         * Default Exceptions.
+         */
         try {
             Mage::throwException($this->__('This is an error with default exception model.'));
         } catch (Exception $e) {
             $message = $e->getMessage();
+
+            /**
+             * Display the error in the screen if Developer Mode is enabled. Otherwise will show default error page.
+             */
             Mage::printException($e);
         }
+    }
+
+
+    /**
+     * Working with logs.
+     */
+    public function logAction()
+    {
+        $data = [
+            'Key' => 'Value'
+        ];
+
+        Mage::log($data, null, 'myFileLog.log', true);
+
+        /** @var Mage_Core_Model_Store $store */
+        $store = Mage::app()->getStore();
+        Mage::log($store->debug(), null, 'store.log', true);
+        Mage::log($store, null, 'storeObject.log', true);
     }
 
 }
