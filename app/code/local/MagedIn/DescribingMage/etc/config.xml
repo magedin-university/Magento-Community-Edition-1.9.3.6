@@ -9,7 +9,11 @@
         <models>
             <magedin_describingmage>
                 <class>MagedIn_DescribingMage_Model</class>
+                <resourceModel>magedin_describingmage_resource</resourceModel>
             </magedin_describingmage>
+            <magedin_describingmage_resource>
+                <class>MagedIn_DescribingMage_Model_Resource</class>
+            </magedin_describingmage_resource>
         </models>
     </global>
     <frontend>

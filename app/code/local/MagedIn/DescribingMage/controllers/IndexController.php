@@ -191,6 +191,9 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
     }
 
 
+    /**
+     * Working with models retrieving.
+     */
     public function modelAction()
     {
         /** @var MagedIn_DescribingMage_Model_Data $data1 */
@@ -204,6 +207,9 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
     }
 
 
+    /**
+     * Working with singleton models retrieving.
+     */
     public function singletonAction()
     {
         /** @var MagedIn_DescribingMage_Model_Data $data1 */
@@ -214,6 +220,38 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
 
         /** @var MagedIn_DescribingMage_Model_Data $data3 */
         $data3 = Mage::getSingleton('magedin_describingmage/data');
+    }
+
+
+    /**
+     * Working with resource models retrieving.
+     */
+    public function resourceModelAction()
+    {
+        /** @var MagedIn_DescribingMage_Model_Resource_Data $data1 */
+        $data1 = Mage::getResourceModel('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Resource_Data $data2 */
+        $data2 = Mage::getResourceModel('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Resource_Data $data3 */
+        $data3 = Mage::getResourceModel('magedin_describingmage/data');
+    }
+
+
+    /**
+     * Working with resource singleton models retrieving.
+     */
+    public function resourceSingletonAction()
+    {
+        /** @var MagedIn_DescribingMage_Model_Resource_Data $data1 */
+        $data1 = Mage::getResourceSingleton('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Resource_Data $data2 */
+        $data2 = Mage::getResourceSingleton('magedin_describingmage/data');
+
+        /** @var MagedIn_DescribingMage_Model_Resource_Data $data3 */
+        $data3 = Mage::getResourceSingleton('magedin_describingmage/data');
     }
 
 }
