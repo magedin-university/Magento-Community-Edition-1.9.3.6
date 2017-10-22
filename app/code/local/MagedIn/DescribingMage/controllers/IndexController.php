@@ -254,4 +254,24 @@ class MagedIn_DescribingMage_IndexController extends Mage_Core_Controller_Front_
         $data3 = Mage::getResourceSingleton('magedin_describingmage/data');
     }
 
+
+    public function exceptionAction()
+    {
+        try {
+            /** @var MagedIn_DescribingMage_Exception $instance */
+            $instance = Mage::exception('MagedIn_DescribingMage', $this->__('This is an error.'), 500);
+            throw $instance;
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            Mage::logException($e);
+        }
+
+        try {
+            Mage::throwException($this->__('This is an error with default exception model.'));
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            Mage::printException($e);
+        }
+    }
+
 }
