@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <magedin translate="title" module="magedin_affiliates">
+            <title>MagedIn</title>
+            <sort_order>80</sort_order>
+            <children>
+                <magedin_affiliates translate="title" module="magedin_affiliates">
+                    <title>MagedIn Affiliate</title>
+                    <sort_order>10</sort_order>
+                    <children>
+                        <list translate="title" module="magedin_affiliates">
+                            <title>Manage Affiliates</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/affiliates/index</action>
+                        </list>
+                        <new translate="title" module="magedin_affiliates">
+                            <title>New Affiliate</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/affiliates/new</action>
+                        </new>
+                        <configuration translate="title" module="magedin_affiliates">
+                            <title>Configuration</title>
+                            <sort_order>100</sort_order>
+                            <action/>
+                        </configuration>
+                    </children>
+                </magedin_affiliates>
+            </children>
+        </magedin>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <magedin translate="title" module="magedin_affiliates">
+                        <title>MagedIn</title>
+                        <sort_order>80</sort_order>
+                        <children>
+                            <magedin_affiliates translate="title" module="magedin_affiliates">
+                                <title>MagedIn Affiliate</title>
+                                <sort_order>10</sort_order>
+                                <children>
+                                    <list translate="title" module="magedin_affiliates">
+                                        <title>Manage Affiliates</title>
+                                        <sort_order>10</sort_order>
+                                    </list>
+                                    <new translate="title" module="magedin_affiliates">
+                                        <title>New Affiliate</title>
+                                        <sort_order>20</sort_order>
+                                    </new>
+                                    <configuration translate="title" module="magedin_affiliates">
+                                        <title>Configuration</title>
+                                        <sort_order>100</sort_order>
+                                    </configuration>
+                                </children>
+                            </magedin_affiliates>
+                        </children>
+                    </magedin>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <magedin_affiliates translate="title" module="magedin_affiliates">
+                                        <title>MagedIn</title>
+                                        <sort_order>80</sort_order>
+                                    </magedin_affiliates>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

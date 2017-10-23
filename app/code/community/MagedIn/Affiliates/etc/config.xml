@@ -64,4 +64,11 @@
             </modules>
         </translate>
     </adminhtml>
+    <default>
+        <magedin_affiliates>
+            <calculation>
+                <commission_calculation_base>2</commission_calculation_base>
+            </calculation>
+        </magedin_affiliates>
+    </default>
 </config>
