@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_Customer>
+            <version>0.1.0</version>
+        </MagedIn_Customer>
+    </modules>
+    <global>
+        <models>
+            <magedin_customer>
+                <class>MagedIn_Customer_Model</class>
+            </magedin_customer>
+            <customer>
+                <rewrite>
+                    <customer>MagedIn_Customer_Model_Customer_Customer</customer>
+                </rewrite>
+            </customer>
+        </models>
+    </global>
+    <frontend>
+        <routers>
+            <magedin_customer>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_Customer</module>
+                    <frontName>customCustomer</frontName>
+                </args>
+            </magedin_customer>
+        </routers>
+    </frontend>
+</config>

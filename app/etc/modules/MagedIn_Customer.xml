@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_Customer>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Customer />
+                <MagedIn_Rewrites />
+            </depends>
+        </MagedIn_Customer>
+    </modules>
+</config>

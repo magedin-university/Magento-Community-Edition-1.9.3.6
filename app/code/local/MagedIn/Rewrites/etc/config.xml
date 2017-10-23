@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagedIn_Rewrites>
+            <version>0.1.0</version>
+        </MagedIn_Rewrites>
+    </modules>
+    <global>
+        <models>
+            <magedin_rewrites>
+                <class>MagedIn_Rewrites_Model</class>
+            </magedin_rewrites>
+            <customer>
+                <rewrite>
+                    <customer>MagedIn_Rewrites_Model_Customer_Customer</customer>
+                </rewrite>
+            </customer>
+        </models>
+    </global>
+    <frontend>
+        <routers>
+            <magedin_rewrites>
+                <use>standard</use>
+                <args>
+                    <module>MagedIn_Rewrites</module>
+                    <frontName>rewrites</frontName>
+                </args>
+            </magedin_rewrites>
+        </routers>
+    </frontend>
+</config>
