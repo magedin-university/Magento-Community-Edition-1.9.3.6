@@ -16,6 +16,11 @@
                 </rewrite>
             </customer>
         </models>
+        <helpers>
+            <magedin_customer>
+                <class>MagedIn_Customer_Helper</class>
+            </magedin_customer>
+        </helpers>
     </global>
     <frontend>
         <routers>
@@ -26,6 +31,24 @@
                     <frontName>customCustomer</frontName>
                 </args>
             </magedin_customer>
+            <magedin_rewrites>
+                <args>
+                    <modules>
+                        <magedin_customer before="MagedIn_Rewrites">MagedIn_Customer_Rewrites</magedin_customer>
+                    </modules>
+                </args>
+            </magedin_rewrites>
         </routers>
     </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <magedin_customer before="Mage_Adminhtml">MagedIn_Customer_Adminhtml</magedin_customer>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 </config>

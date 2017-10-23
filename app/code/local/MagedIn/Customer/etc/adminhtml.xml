@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <customer>
+            <children>
+                <magedin_customer translate="title" module="magedin_customer">
+                    <title>MagedIn Customer</title>
+                    <sort_order>900</sort_order>
+                    <children>
+                        <special translate="title" module="magedin_customer">
+                            <title>Special Menu</title>
+                            <sort_order>10</sort_order>
+                            <action>*/*/special</action>
+                        </special>
+                    </children>
+                </magedin_customer>
+            </children>
+        </customer>
+    </menu>
+</config>
