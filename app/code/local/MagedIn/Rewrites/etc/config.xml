@@ -16,6 +16,16 @@
                 </rewrite>
             </customer>
         </models>
+        <helpers>
+            <magedin_rewrites>
+                <class>MagedIn_Rewrites_Helper</class>
+            </magedin_rewrites>
+            <customer>
+                <rewrite>
+                    <data>MagedIn_Rewrites_Helper_Customer_Data</data>
+                </rewrite>
+            </customer>
+        </helpers>
     </global>
     <frontend>
         <routers>
