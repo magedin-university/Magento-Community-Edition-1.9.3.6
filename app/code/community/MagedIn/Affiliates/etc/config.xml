@@ -14,9 +14,29 @@
             <magedin_affiliates_resource>
                 <class>MagedIn_Affiliates_Model_Resource</class>
                 <entities>
+                    <entity>
+                        <table>magedin_affiliates_entity</table>
+                    </entity>
+                    <order>
+                        <table>magedin_affiliates_order</table>
+                    </order>
+                    <history>
+                        <table>magedin_affiliates_history</table>
+                    </history>
+                    <balance>
+                        <table>magedin_affiliates_balance</table>
+                    </balance>
                 </entities>
             </magedin_affiliates_resource>
         </models>
+        <resources>
+            <magedin_affiliates_setup>
+                <setup>
+                    <module>MagedIn_Affiliates</module>
+                    <class>MagedIn_Affiliates_Model_Resource_Setup</class>
+                </setup>
+            </magedin_affiliates_setup>
+        </resources>
         <blocks>
             <magedin_affiliates>
                 <class>MagedIn_Affiliates_Block</class>
