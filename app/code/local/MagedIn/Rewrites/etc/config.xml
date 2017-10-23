@@ -26,6 +26,16 @@
                 </rewrite>
             </customer>
         </helpers>
+        <blocks>
+            <magedin_rewrites>
+                <class>MagedIn_Rewrites_Block</class>
+            </magedin_rewrites>
+            <page>
+                <rewrite>
+                    <html_header>MagedIn_Rewrites_Block_Page_Html_Header</html_header>
+                </rewrite>
+            </page>
+        </blocks>
     </global>
     <frontend>
         <routers>
