@@ -61,7 +61,44 @@ class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliate
      */
     public function saveAction()
     {
+        if (!$this->getRequest()->isPost()) {
+            $this->_getAdminhtmlSession()->addError($this->__('Invalid request type.'));
+            $this->_redirect('*/*/index');
 
+            return;
+        }
+
+        $affiliateData = (array) $this->getRequest()->getPost('affiliate', array());
+        $id            = isset($affiliateData['id']) ? (int) $affiliateData['id'] : null;
+
+        unset($affiliateData['id']);
+
+        $affiliateData = $this->_filterAffiliateData($affiliateData);
+
+        /** @var MagedIn_Affiliates_Model_Affiliate $affiliate */
+        $affiliate = $this->_getAffiliateModel($id);
+
+        try {
+            $affiliate->addData($affiliateData);
+            $affiliate->save();
+
+            $method = empty($id) ? $this->__('created') : $this->__('updated');
+            $this->_getAdminhtmlSession()->addSuccess($this->__('The affiliate was successfully %s.', $method));
+        } catch (Exception $e) {
+            $this->_getAdminhtmlSession()->addError($e->getMessage());
+
+            $params = [
+                '_current' => true,
+            ];
+
+            if ($affiliate->getId()) {
+                $params['id'] = $affiliate->getId();
+            }
+
+            $this->_redirect('*/*/edit', $params);
+        }
+
+        $this->_redirect('*/*');
     }
 
 
@@ -70,7 +107,23 @@ class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliate
      */
     public function deleteAction()
     {
+        try {
+            $id = (int) $this->getRequest()->getParam('id');
 
+            /**
+             * It's not required to load the affiliate model.
+             */
+            $this->_getAffiliateModel(null, [
+                'id' => $id]
+            )->delete();
+
+
+            $this->_getAdminhtmlSession()->addSuccess($this->__('The affiliate was successfully deleted.'));
+        } catch (Exception $e) {
+            $this->_getAdminhtmlSession()->addError($e->getMessage());
+        }
+
+        $this->_redirect('*/*/index');
     }
 
 
