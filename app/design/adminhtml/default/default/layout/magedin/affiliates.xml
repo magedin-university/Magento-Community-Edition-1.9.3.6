@@ -10,4 +10,12 @@
             <block type="magedin_affiliates/adminhtml_affiliate_grid" name="magedin.affiliate.grid"/>
         </block>
     </adminhtml_affiliate_grid>
+    <adminhtml_affiliate_edit>
+        <reference name="left">
+            <block type="magedin_affiliates/adminhtml_affiliate_edit_tabs" name="magedin.affiliate.edit.tabs"/>
+        </reference>
+        <reference name="content">
+            <block type="magedin_affiliates/adminhtml_affiliate_edit" name="magedin.affiliate.edit"/>
+        </reference>
+    </adminhtml_affiliate_edit>
 </layout>

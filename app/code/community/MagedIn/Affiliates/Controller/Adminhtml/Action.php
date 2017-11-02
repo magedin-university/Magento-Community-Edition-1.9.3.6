@@ -3,7 +3,8 @@
 abstract class MagedIn_Affiliates_Controller_Adminhtml_Action extends Mage_Adminhtml_Controller_Action
 {
 
-    const KEY_AFFILIATE_NEW = 'affiliate_new';
+    const KEY_AFFILIATE_NEW   = 'affiliate_new';
+    const AFFILIATE_MODEL_KEY = 'current_affiliate';
 
 
     /**
@@ -37,6 +38,35 @@ abstract class MagedIn_Affiliates_Controller_Adminhtml_Action extends Mage_Admin
              ->_title('Affiliates');
 
         return $this;
+    }
+
+
+    /**
+     * @return Mage_Adminhtml_Model_Session
+     */
+    protected function _getAdminhtmlSession()
+    {
+        return Mage::getSingleton('adminhtml/session');
+    }
+
+
+    /**
+     * @param null|int $id
+     *
+     * @return MagedIn_Affiliates_Model_Affiliate
+     */
+    protected function _getAffiliateModel($id = null)
+    {
+        /** @var MagedIn_Affiliates_Model_Affiliate $affiliate */
+        $affiliate = Mage::getModel('magedin_affiliates/affiliate');
+
+        if (!empty($id)) {
+            $affiliate->load((int) $id);
+        }
+
+        Mage::register(self::AFFILIATE_MODEL_KEY, $affiliate, true);
+
+        return $affiliate;
     }
 
 }

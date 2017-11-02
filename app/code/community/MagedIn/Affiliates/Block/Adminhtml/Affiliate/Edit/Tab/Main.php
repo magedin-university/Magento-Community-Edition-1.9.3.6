@@ -1,0 +1,119 @@
+<?php
+
+class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
+    extends Mage_Adminhtml_Block_Widget_Form
+        implements Mage_Adminhtml_Block_Widget_Tab_Interface
+{
+
+    use MagedIn_Affiliates_Block_Adminhtml_Common;
+
+
+    /**
+     * @return $this
+     */
+    protected function _prepareForm()
+    {
+        $form = new Varien_Data_Form();
+        $form->setHtmlIdPrefix('affiliate_');
+
+        /** @var Varien_Data_Form_Element_Fieldset $fieldset */
+        $fieldset = $form->addFieldset('general_fieldset', [
+            'legend' => $this->__('General Information')
+        ]);
+
+        if ($this->getAffiliateId()) {
+            $fieldset->addField('id', 'hidden', [
+                'name'  => 'affiliate[id]',
+                'value' => $this->getAffiliateId(),
+            ]);
+        }
+
+        $fieldset->addField('name', 'text', [
+            'label'    => $this->__('Name'),
+            'name'     => 'affiliate[name]',
+            'required' => true,
+            'value'    => $this->getAffiliate()->getName(),
+        ]);
+
+        $fieldset->addField('description', 'textarea', [
+            'label'    => $this->__('Description'),
+            'name'     => 'affiliate[description]',
+            'required' => false,
+            'value'    => $this->getAffiliate()->getDescription(),
+        ]);
+
+        $fieldset->addField('comment', 'textarea', [
+            'label'    => $this->__('Comment'),
+            'name'     => 'affiliate[comment]',
+            'required' => false,
+            'value'    => $this->getAffiliate()->getComment(),
+        ]);
+
+        /** @var MagedIn_Affiliates_Model_System_Config_Source_Commission_Type $types */
+        $types = Mage::getModel('magedin_affiliates/system_config_source_commission_type');
+        $fieldset->addField('sales_commission_type', 'select', [
+            'label'    => $this->__('Commission Type'),
+            'name'     => 'affiliate[sales_commission_type]',
+            'required' => true,
+            'value'    => $this->getAffiliate()->getSalesCommissionType(),
+            'options'  => $types->toArray(),
+        ]);
+
+        $fieldset->addField('sales_commission_percent', 'text', [
+            'label'    => $this->__('Commission Percent'),
+            'name'     => 'affiliate[sales_commission_percent]',
+            'required' => false,
+            'value'    => $this->getAffiliate()->getSalesCommissionPercent(),
+        ]);
+
+        $fieldset->addField('sales_commission_fixed', 'text', [
+            'label'    => $this->__('Commission Fixed'),
+            'name'     => 'affiliate[sales_commission_fixed]',
+            'required' => false,
+            'value'    => $this->getAffiliate()->getSalesCommissionFixed(),
+        ]);
+
+        $this->setForm($form);
+
+        parent::_prepareForm();
+
+        return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getTabLabel()
+    {
+        return $this->__('Affiliate Information');
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getTabTitle()
+    {
+        return $this->getTabLabel();
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isHidden()
+    {
+        return false;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function canShowTab()
+    {
+        return true;
+    }
+
+}

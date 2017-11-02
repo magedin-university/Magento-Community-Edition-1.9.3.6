@@ -29,7 +29,25 @@ class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliate
      */
     public function editAction()
     {
-        $id = (int) $this->getRequest()->getParam('id');
+        $id = $this->getRequest()->getParam('id');
+
+        if (!empty($id)) {
+            $this->_isAffiliateNew(false);
+        }
+
+        try {
+            /** @var MagedIn_Affiliates_Model_Affiliate $affiliate */
+            $affiliate = $this->_getAffiliateModel($id);
+
+            if (!$this->_isAffiliateNew() && !$affiliate->getId()) {
+                Mage::throwException($this->__('This affiliate does not exist.'));
+            }
+        } catch (Exception $e) {
+            $this->_getAdminhtmlSession()->addError($e->getMessage());
+            $this->_redirect('*/*/index');
+
+            return;
+        }
 
         $this->_initLayout();
         $title = $this->_isAffiliateNew() ? $this->__('New Affiliate') : $this->__('Edit Affiliate');
