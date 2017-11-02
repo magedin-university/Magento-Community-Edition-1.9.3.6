@@ -22,7 +22,6 @@ class MagedIn_Affiliates_Model_Resource_Affiliate extends MagedIn_Affiliates_Mod
     protected function _construct()
     {
         $this->_init('magedin_affiliates/entity', 'id');
-        parent::_construct();
     }
 
 }

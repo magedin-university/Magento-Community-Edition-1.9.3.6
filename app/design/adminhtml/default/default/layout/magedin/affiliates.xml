@@ -1,4 +1,13 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
-
+    <adminhtml_affiliate_index>
+        <reference name="content">
+            <block type="magedin_affiliates/adminhtml_affiliate" name="magedin.affiliate.grid.container"/>
+        </reference>
+    </adminhtml_affiliate_index>
+    <adminhtml_affiliate_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="magedin_affiliates/adminhtml_affiliate_grid" name="magedin.affiliate.grid"/>
+        </block>
+    </adminhtml_affiliate_grid>
 </layout>

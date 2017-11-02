@@ -29,6 +29,8 @@ class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliate
      */
     public function editAction()
     {
+        $id = (int) $this->getRequest()->getParam('id');
+
         $this->_initLayout();
         $title = $this->_isAffiliateNew() ? $this->__('New Affiliate') : $this->__('Edit Affiliate');
         $this->_title($title);
@@ -51,6 +53,18 @@ class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliate
     public function deleteAction()
     {
 
+    }
+
+
+    /**
+     * Grid Action.
+     */
+    public function gridAction()
+    {
+        $handle = $this->getFullActionName();
+
+        $this->loadLayout($handle);
+        $this->renderLayout();
     }
 
 }
