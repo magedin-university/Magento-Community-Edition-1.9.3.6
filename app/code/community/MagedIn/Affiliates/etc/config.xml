@@ -84,6 +84,17 @@
             </modules>
         </translate>
     </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <magedin_affiliates before="Mage_Adminhtml">MagedIn_Affiliates_Adminhtml</magedin_affiliates>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <default>
         <magedin_affiliates>
             <calculation>
