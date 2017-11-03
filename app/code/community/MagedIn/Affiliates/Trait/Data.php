@@ -154,4 +154,22 @@ trait MagedIn_Affiliates_Trait_Data
         return Mage::getModel('magedin_affiliates/affiliate_query_param');
     }
 
+
+    /**
+     * @param int $affiliateId
+     *
+     * @return MagedIn_Affiliates_Model_Affiliate
+     */
+    protected function getAffiliate($affiliateId)
+    {
+        /** @var MagedIn_Affiliates_Model_Affiliate $affiliate */
+        $affiliate = Mage::getModel('magedin_affiliates/affiliate');
+
+        if ($affiliateId) {
+            $affiliate->load($affiliateId);
+        }
+
+        return $affiliate;
+    }
+
 }

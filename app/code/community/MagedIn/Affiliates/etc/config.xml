@@ -65,6 +65,16 @@
                 </magedin_affiliates>
             </modules>
         </translate>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <magedin_affiliates_assign_affiliate_query_parameter>
+                        <class>magedin_affiliates/observer</class>
+                        <method>assignAffiliateQueryParam</method>
+                    </magedin_affiliates_assign_affiliate_query_parameter>
+                </observers>
+            </controller_action_predispatch>
+        </events>
     </frontend>
     <adminhtml>
         <layout>

@@ -4,7 +4,10 @@ class MagedIn_Affiliates_Model_Affiliate_Query_Param
 {
 
     /** string */
-    const PARAM_CODE = 'affiliate_id';
+    const PARAM_CODE  = 'affiliate_id';
+
+    /** string */
+    const COOKIE_CODE = 'affiliate_hash';
 
 
     /**
