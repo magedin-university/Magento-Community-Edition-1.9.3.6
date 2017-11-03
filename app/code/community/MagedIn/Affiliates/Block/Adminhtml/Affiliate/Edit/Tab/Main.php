@@ -5,7 +5,8 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
         implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
 
-    use MagedIn_Affiliates_Block_Adminhtml_Common;
+    use MagedIn_Affiliates_Trait_Data,
+        MagedIn_Affiliates_Block_Adminhtml_Common;
 
 
     /**
@@ -72,6 +73,24 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
             'required' => false,
             'value'    => $this->getAffiliate()->getSalesCommissionFixed(),
         ]);
+
+        if ($this->getAffiliateId()) {
+            /** @var Varien_Data_Form_Element_Fieldset $sharingFieldset */
+            $sharingFieldset = $form->addFieldset('sharing_fieldset', [
+                'legend' => $this->__('Sharing Information'),
+                'class'  => 'fieldset-wide'
+            ]);
+
+            $sharingFieldset->addField('share_link', 'link', [
+                'label' => $this->__('Shareable Link'),
+                'note'  => $this->__(
+                    'This is the URL you will need to share with your affiliates. ' .
+                    "Note that the most important part in this link is the parameter '%s' and not the URL itself.",
+                    MagedIn_Affiliates_Model_Affiliate_Query_Param::PARAM_CODE
+                ),
+                'value' => $this->_getAffiliateQueryParam()->getAffiliateUrl($this->getAffiliateId()),
+            ]);
+        }
 
         $this->setForm($form);
 

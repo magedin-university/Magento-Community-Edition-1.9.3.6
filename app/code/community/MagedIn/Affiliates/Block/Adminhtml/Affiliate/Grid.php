@@ -63,6 +63,7 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Grid extends Mage_Adminhtml_B
             'index'      => 'id',
             'width'      => '50px',
             'type'       => 'text',
+            'align'      => 'center',
             'filterable' => true,
             'sortable'   => true,
         ));

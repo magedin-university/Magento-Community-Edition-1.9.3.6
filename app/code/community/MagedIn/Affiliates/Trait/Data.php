@@ -145,4 +145,13 @@ trait MagedIn_Affiliates_Trait_Data
         return Mage::app()->getCookie();
     }
 
+
+    /**
+     * @return MagedIn_Affiliates_Model_Affiliate_Query_Param
+     */
+    protected function _getAffiliateQueryParam()
+    {
+        return Mage::getModel('magedin_affiliates/affiliate_query_param');
+    }
+
 }

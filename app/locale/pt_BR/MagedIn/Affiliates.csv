@@ -24,3 +24,7 @@
 "Delete Affiliate","Excluir Afiliado"
 "The affiliate was successfully deleted.","O afiliado foi excluído com sucesso."
 "Are you sure you want to do this?","Tem certeza que quer fazer isso?"
+"Configuration","Configuração"
+"Sharing Information","Informações de Compartilhamento"
+"Shareable Link","Link Compartilhável"
+"This is the URL you will need to share with your affiliates. Note that the most important part in this link is the parameter '%s' and not the URL itself.","Esta é a URL que você precisa compartilhar com seus afiliados. Repare que a parte mais importante deste link é o parâmetro '%s' e não o link em si."
