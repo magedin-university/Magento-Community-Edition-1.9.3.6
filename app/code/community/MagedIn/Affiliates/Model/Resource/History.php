@@ -20,7 +20,6 @@ class MagedIn_Affiliates_Model_Resource_History extends MagedIn_Affiliates_Model
     protected function _construct()
     {
         $this->_init('magedin_affiliates/history', 'id');
-        parent::_construct();
     }
 
 }

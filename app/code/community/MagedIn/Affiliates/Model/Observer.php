@@ -134,4 +134,63 @@ class MagedIn_Affiliates_Model_Observer
         $affiliate->registerNewOrder($order);
     }
 
+
+    /**
+     * Process order cancellation.
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function processOrderCancellation(Varien_Event_Observer $observer)
+    {
+        /** @var Mage_Sales_Model_Order $order */
+        $order = $observer->getEvent()->getData('order');
+
+        if (!$order || !$order->getId()) {
+            return;
+        }
+
+        $this->_processOrderRefund($order, MagedIn_Affiliates_Model_Order::STATUS_CANCELLED);
+    }
+
+
+    /**
+     * Process order cancellation.
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function processOrderRefund(Varien_Event_Observer $observer)
+    {
+        /** @var Mage_Sales_Model_Order_Creditmemo $creditMemo */
+        $creditMemo = $observer->getEvent()->getData('creditmemo');
+        $order      = $creditMemo->getOrder();
+
+        if (!$order || !$order->getId()) {
+            return;
+        }
+
+        $this->_processOrderRefund($order, MagedIn_Affiliates_Model_Order::STATUS_REFUNDED);
+    }
+
+
+    /**
+     * @param Mage_Sales_Model_Order $order
+     * @param string                 $status
+     */
+    protected function _processOrderRefund(Mage_Sales_Model_Order $order, $status = null)
+    {
+        if (!$order || !$order->getId()) {
+            return;
+        }
+
+        /** @var MagedIn_Affiliates_Model_Affiliate $affiliate */
+        $affiliateId = $order->getData('affiliate_id');
+        $affiliate   = $this->getAffiliate((int) $affiliateId);
+
+        if (!$affiliate || !$affiliate->getId()) {
+            return;
+        }
+
+        $affiliate->processOrderCancellation($order, $status);
+    }
+
 }

@@ -56,6 +56,26 @@
                         </span>
                     </td>
                 </tr>
+                <?php if ($this->getOrderCommission() && $this->getOrderCommission()->getId()): ?>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Order Commission Status') ?></label></td>
+                    <td class="value">
+                        <span><?php echo ucfirst($this->__($this->getOrderCommission()->getStatus())) ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Order Commission Amount') ?></label></td>
+                    <td class="value">
+                        <span><?php echo Mage::helper('core')->formatCurrency($this->getOrderCommission()->getCommissionAmount()) ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Order Base Commission Amount') ?></label></td>
+                    <td class="value">
+                        <span><?php echo Mage::app()->getStore()->getBaseCurrency()->format($this->getOrderCommission()->getBaseCommissionAmount()) ?></span>
+                    </td>
+                </tr>
+                <?php endif; ?>
             </table>
         </div>
     </div>

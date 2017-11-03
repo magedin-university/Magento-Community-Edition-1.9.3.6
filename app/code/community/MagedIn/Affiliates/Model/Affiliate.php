@@ -48,6 +48,26 @@ class MagedIn_Affiliates_Model_Affiliate extends MagedIn_Affiliates_Model_Abstra
 
 
     /**
+     * @return MagedIn_Affiliates_Model_Balance
+     */
+    public function getBalance()
+    {
+        if (!$this->hasData('balance_model')) {
+            /** @var MagedIn_Affiliates_Model_Balance $balance */
+            $balance = Mage::getModel('magedin_affiliates/balance')->loadByAffiliateId($this->getId());
+
+            if ($balance->isObjectNew() && $this->getId()) {
+                $balance->setAffiliate($this)->save();
+            }
+
+            $this->setData('balance_model', $balance);
+        }
+
+        return $this->getData('balance_model');
+    }
+
+
+    /**
      * @param Mage_Sales_Model_Order $order
      *
      * @return $this
@@ -58,6 +78,45 @@ class MagedIn_Affiliates_Model_Affiliate extends MagedIn_Affiliates_Model_Abstra
         $affiliateOrder = Mage::getModel('magedin_affiliates/order');
         $affiliateOrder->createNew($order, $this);
         $affiliateOrder->save();
+
+        $this->getBalance()
+            ->importAffiliateOrder($affiliateOrder)
+            ->save();
+
+        return $this;
+    }
+
+
+    /**
+     * @param Mage_Sales_Model_Order $order
+     * @param string                 $status
+     *
+     * @return $this
+     */
+    public function processOrderCancellation(Mage_Sales_Model_Order $order, $status = null)
+    {
+        if ($this->getId() != $order->getData('affiliate_id')) {
+            return $this;
+        }
+
+        /** @var MagedIn_Affiliates_Model_Order $affiliateOrder */
+        $affiliateOrder = Mage::getModel('magedin_affiliates/order');
+        $affiliateOrder->loadByReference($order, $this);
+
+        if (!$affiliateOrder->getId()) {
+            return $this;
+        }
+
+        $this->getBalance()
+            ->decreaseAmount($affiliateOrder->getCommissionAmount())
+            ->save();
+
+        if (empty($status)) {
+            $status = MagedIn_Affiliates_Model_Order::STATUS_CANCELLED;
+        }
+
+        $affiliateOrder->setStatus($status)
+            ->save();
 
         return $this;
     }

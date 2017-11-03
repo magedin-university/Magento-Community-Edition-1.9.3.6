@@ -2,7 +2,7 @@
 <config>
     <modules>
         <MagedIn_Affiliates>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </MagedIn_Affiliates>
     </modules>
     <global>
@@ -68,6 +68,22 @@
                     </magedin_affiliates_order_invoice_register>
                 </observers>
             </sales_order_invoice_register>
+            <order_cancel_after>
+                <observers>
+                    <magedin_affiliates_process_order_cancellation>
+                        <class>magedin_affiliates/observer</class>
+                        <method>processOrderCancellation</method>
+                    </magedin_affiliates_process_order_cancellation>
+                </observers>
+            </order_cancel_after>
+            <sales_order_creditmemo_refund>
+                <observers>
+                    <magedin_affiliates_process_order_refund>
+                        <class>magedin_affiliates/observer</class>
+                        <method>processOrderRefund</method>
+                    </magedin_affiliates_process_order_refund>
+                </observers>
+            </sales_order_creditmemo_refund>
         </events>
     </global>
     <frontend>

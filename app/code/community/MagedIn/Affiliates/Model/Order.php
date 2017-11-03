@@ -18,6 +18,7 @@
  * @method $this setCreatedAt(string $dateTime)
  * @method $this setUpdatedAt(string $dateTime)
  * @method $this setIsLoaded(bool $flag)
+ * @method $this setStatus(string $status)
  *
  * @method int    getAffiliateId()
  * @method int    getOrderId()
@@ -34,12 +35,18 @@
  * @method string getCreatedAt()
  * @method string getUpdatedAt()
  * @method bool   getIsLoaded()
+ * @method string getStatus()
  */
 class MagedIn_Affiliates_Model_Order extends MagedIn_Affiliates_Model_Abstract
 {
 
     use MagedIn_Affiliates_Trait_Config,
         MagedIn_Affiliates_Trait_Convertor;
+
+
+    const STATUS_CREATED   = 'created';
+    const STATUS_CANCELLED = 'cancelled';
+    const STATUS_REFUNDED  = 'refunded';
 
 
     /** @var MagedIn_Affiliates_Model_Affiliate */
@@ -71,6 +78,7 @@ class MagedIn_Affiliates_Model_Order extends MagedIn_Affiliates_Model_Abstract
 
         $this->setAffiliate($affiliate);
         $this->setOrder($order);
+        $this->setStatus(self::STATUS_CREATED);
 
         $affiliate->setOrder($order);
 

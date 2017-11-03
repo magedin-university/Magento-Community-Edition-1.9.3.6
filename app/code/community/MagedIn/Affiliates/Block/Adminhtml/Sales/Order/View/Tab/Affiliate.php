@@ -48,6 +48,22 @@ class MagedIn_Affiliates_Block_Adminhtml_Sales_Order_View_Tab_Affiliate
 
 
     /**
+     * @return MagedIn_Affiliates_Model_Order
+     */
+    public function getOrderCommission()
+    {
+        /** @var MagedIn_Affiliates_Model_Order $orderCommission */
+        $orderCommission = Mage::getModel('magedin_affiliates/order');
+
+        if ($this->_getOrder() && $this->getOrderAffiliate()) {
+            $orderCommission->loadByReference($this->_getOrder(), $this->getOrderAffiliate());
+        }
+
+        return $orderCommission;
+    }
+
+
+    /**
      * @return string
      */
     public function getTabLabel()
