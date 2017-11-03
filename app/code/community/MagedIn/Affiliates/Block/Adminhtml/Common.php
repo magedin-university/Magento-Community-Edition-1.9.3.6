@@ -6,7 +6,7 @@ trait MagedIn_Affiliates_Block_Adminhtml_Common
     /**
      * @return MagedIn_Affiliates_Model_Affiliate
      */
-    public function getAffiliate()
+    public function getCurrentAffiliate()
     {
         return Mage::registry(MagedIn_Affiliates_Controller_Adminhtml_Action::AFFILIATE_MODEL_KEY);
     }
@@ -15,10 +15,10 @@ trait MagedIn_Affiliates_Block_Adminhtml_Common
     /**
      * @return bool|int
      */
-    public function getAffiliateId()
+    public function getCurrentAffiliateId()
     {
-        if ($this->getAffiliate() && $this->getAffiliate()->getId()) {
-            return (int) $this->getAffiliate()->getId();
+        if ($this->getCurrentAffiliate() && $this->getCurrentAffiliate()->getId()) {
+            return (int) $this->getCurrentAffiliate()->getId();
         }
 
         return false;

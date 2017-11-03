@@ -29,8 +29,8 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit extends Mage_Adminhtml_B
      */
     public function getHeaderText()
     {
-        if ($this->getAffiliateId()) {
-            $affiliateName = $this->getAffiliate()->getName();
+        if ($this->getCurrentAffiliateId()) {
+            $affiliateName = $this->getCurrentAffiliate()->getName();
             return $this->__("Edit Affiliate '%s'", $this->escapeHtml($affiliateName));
         }
 

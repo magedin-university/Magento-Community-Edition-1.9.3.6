@@ -5,8 +5,8 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
         implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
 
-    use MagedIn_Affiliates_Trait_Data,
-        MagedIn_Affiliates_Block_Adminhtml_Common;
+    use MagedIn_Affiliates_Block_Adminhtml_Common,
+        MagedIn_Affiliates_Trait_Data;
 
 
     /**
@@ -22,10 +22,10 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
             'legend' => $this->__('General Information')
         ]);
 
-        if ($this->getAffiliateId()) {
+        if ($this->getCurrentAffiliateId()) {
             $fieldset->addField('id', 'hidden', [
                 'name'  => 'affiliate[id]',
-                'value' => $this->getAffiliateId(),
+                'value' => $this->getCurrentAffiliateId(),
             ]);
         }
 
@@ -33,21 +33,21 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
             'label'    => $this->__('Name'),
             'name'     => 'affiliate[name]',
             'required' => true,
-            'value'    => $this->getAffiliate()->getName(),
+            'value'    => $this->getCurrentAffiliate()->getName(),
         ]);
 
         $fieldset->addField('description', 'textarea', [
             'label'    => $this->__('Description'),
             'name'     => 'affiliate[description]',
             'required' => false,
-            'value'    => $this->getAffiliate()->getDescription(),
+            'value'    => $this->getCurrentAffiliate()->getDescription(),
         ]);
 
         $fieldset->addField('comment', 'textarea', [
             'label'    => $this->__('Comment'),
             'name'     => 'affiliate[comment]',
             'required' => false,
-            'value'    => $this->getAffiliate()->getComment(),
+            'value'    => $this->getCurrentAffiliate()->getComment(),
         ]);
 
         /** @var MagedIn_Affiliates_Model_System_Config_Source_Commission_Type $types */
@@ -56,7 +56,7 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
             'label'    => $this->__('Commission Type'),
             'name'     => 'affiliate[sales_commission_type]',
             'required' => true,
-            'value'    => $this->getAffiliate()->getSalesCommissionType(),
+            'value'    => $this->getCurrentAffiliate()->getSalesCommissionType(),
             'options'  => $types->toArray(),
         ]);
 
@@ -64,17 +64,17 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
             'label'    => $this->__('Commission Percent'),
             'name'     => 'affiliate[sales_commission_percent]',
             'required' => false,
-            'value'    => $this->getAffiliate()->getSalesCommissionPercent(),
+            'value'    => $this->getCurrentAffiliate()->getSalesCommissionPercent(),
         ]);
 
         $fieldset->addField('sales_commission_fixed', 'text', [
             'label'    => $this->__('Commission Fixed'),
             'name'     => 'affiliate[sales_commission_fixed]',
             'required' => false,
-            'value'    => $this->getAffiliate()->getSalesCommissionFixed(),
+            'value'    => $this->getCurrentAffiliate()->getSalesCommissionFixed(),
         ]);
 
-        if ($this->getAffiliateId()) {
+        if ($this->getCurrentAffiliateId()) {
             /** @var Varien_Data_Form_Element_Fieldset $sharingFieldset */
             $sharingFieldset = $form->addFieldset('sharing_fieldset', [
                 'legend' => $this->__('Sharing Information'),
@@ -88,7 +88,7 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tab_Main
                     "Note that the most important part in this link is the parameter '%s' and not the URL itself.",
                     MagedIn_Affiliates_Model_Affiliate_Query_Param::PARAM_CODE
                 ),
-                'value' => $this->_getAffiliateQueryParam()->getAffiliateUrl($this->getAffiliateId()),
+                'value' => $this->_getAffiliateQueryParam()->getAffiliateUrl($this->getCurrentAffiliateId()),
             ]);
         }
 

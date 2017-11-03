@@ -76,4 +76,26 @@ class MagedIn_Affiliates_Model_Observer
         ));
     }
 
+
+    /**
+     * Deletes the cookie after the order is placed.
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function removeAffiliateCookie(Varien_Event_Observer $observer)
+    {
+        /**
+         * @var Mage_Sales_Model_Order $order
+         * @var Mage_Sales_Model_Quote $quote
+         */
+        $order = $observer->getEvent()->getData('order');
+        $quote = $observer->getEvent()->getData('quote');
+
+        if (!$order || !$quote || !$order->getId() || !$quote->getId()) {
+            return;
+        }
+
+        $this->getCookie()->delete(MagedIn_Affiliates_Model_Affiliate_Query_Param::COOKIE_CODE);
+    }
+
 }
