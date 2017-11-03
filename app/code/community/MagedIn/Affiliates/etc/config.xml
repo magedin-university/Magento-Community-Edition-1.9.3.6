@@ -59,6 +59,16 @@
                 </affiliate_id>
             </sales_convert_order>
         </fieldsets>
+        <events>
+            <sales_order_invoice_register>
+                <observers>
+                    <magedin_affiliates_order_invoice_register>
+                        <class>magedin_affiliates/observer</class>
+                        <method>orderInvoiceRegister</method>
+                    </magedin_affiliates_order_invoice_register>
+                </observers>
+            </sales_order_invoice_register>
+        </events>
     </global>
     <frontend>
         <layout>

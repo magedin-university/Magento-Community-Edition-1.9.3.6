@@ -46,4 +46,20 @@ class MagedIn_Affiliates_Model_Affiliate extends MagedIn_Affiliates_Model_Abstra
         }
     }
 
+
+    /**
+     * @param Mage_Sales_Model_Order $order
+     *
+     * @return $this
+     */
+    public function registerNewOrder(Mage_Sales_Model_Order $order)
+    {
+        /** @var MagedIn_Affiliates_Model_Order $affiliateOrder */
+        $affiliateOrder = Mage::getModel('magedin_affiliates/order');
+        $affiliateOrder->createNew($order, $this);
+        $affiliateOrder->save();
+
+        return $this;
+    }
+
 }

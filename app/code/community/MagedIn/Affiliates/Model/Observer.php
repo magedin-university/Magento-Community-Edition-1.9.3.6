@@ -98,4 +98,40 @@ class MagedIn_Affiliates_Model_Observer
         $this->getCookie()->delete(MagedIn_Affiliates_Model_Affiliate_Query_Param::COOKIE_CODE);
     }
 
+
+    /**
+     * Process the order commission calculation for the affiliate.
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function orderInvoiceRegister(Varien_Event_Observer $observer)
+    {
+        /**
+         * @var Mage_Sales_Model_Order_Invoice $invoice
+         * @var Mage_Sales_Model_Order         $order
+         */
+        $invoice = $observer->getEvent()->getData('invoice');
+        $order   = $invoice->getOrder();
+
+        /**
+         * Validate the order object.
+         */
+        if (!$order || !$order->getId()) {
+            return;
+        }
+
+        /** @var MagedIn_Affiliates_Model_Affiliate $affiliate */
+        $affiliateId = (int) $order->getData('affiliate_id');
+        $affiliate   = $this->getAffiliate($affiliateId);
+
+        /**
+         * Validate the affiliate model.
+         */
+        if (!$affiliate || !$affiliate->getId()) {
+            return;
+        }
+
+        $affiliate->registerNewOrder($order);
+    }
+
 }

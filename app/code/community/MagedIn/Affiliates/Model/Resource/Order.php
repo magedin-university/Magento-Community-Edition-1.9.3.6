@@ -34,7 +34,50 @@ class MagedIn_Affiliates_Model_Resource_Order extends MagedIn_Affiliates_Model_R
     protected function _construct()
     {
         $this->_init('magedin_affiliates/order', 'id');
-        parent::_construct();
+    }
+
+
+    /**
+     * @param Mage_Sales_Model_Order             $order
+     * @param MagedIn_Affiliates_Model_Affiliate $affiliate
+     *
+     * @return bool
+     */
+    public function affiliateOrderExists(Mage_Sales_Model_Order $order, MagedIn_Affiliates_Model_Affiliate $affiliate)
+    {
+        return (bool) $this->getAffiliateOrderId($order, $affiliate);
+    }
+
+
+    /**
+     * @param Mage_Sales_Model_Order             $order
+     * @param MagedIn_Affiliates_Model_Affiliate $affiliate
+     *
+     * @return bool|int
+     */
+    public function getAffiliateOrderId(Mage_Sales_Model_Order $order, MagedIn_Affiliates_Model_Affiliate $affiliate)
+    {
+        if (!$order->getId() || !$affiliate->getId()) {
+            return false;
+        }
+
+        $bind = array(
+            ':order_id'     => (int) $order->getId(),
+            ':affiliate_id' => (int) $affiliate->getId(),
+        );
+
+        /** @var Varien_Db_Select $select */
+        $select = $this->_getReadAdapter()
+            ->select()
+            ->from($this->getMainTable(), 'id')
+            ->where('order_id = :order_id')
+            ->where('affiliate_id = :affiliate_id')
+            ->limit(1);
+
+        /** @var bool|int $result */
+        $result = $this->_getReadAdapter()->fetchOne($select, $bind);
+
+        return $result;
     }
 
 }

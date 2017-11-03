@@ -3,7 +3,9 @@
 abstract class MagedIn_Affiliates_Model_Abstract extends Mage_Core_Model_Abstract
 {
 
-    use MagedIn_Affiliates_Trait_Data;
+    use MagedIn_Affiliates_Trait_Data {
+        getAffiliate as protected getAffiliateModel;
+    }
 
 
     /**

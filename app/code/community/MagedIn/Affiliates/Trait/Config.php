@@ -12,7 +12,7 @@ trait MagedIn_Affiliates_Trait_Config
      * @return mixed
      */
     protected function getModuleConfig(
-        $field, $group, $section = 'magedin_affiliate', Mage_Core_Model_Store $store = null
+        $field, $group, $section = 'magedin_affiliates', Mage_Core_Model_Store $store = null
     )
     {
         return $this->getStoreConfig($field, $group, $section, $store);
