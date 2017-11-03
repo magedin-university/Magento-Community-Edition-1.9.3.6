@@ -1,0 +1,72 @@
+<?php
+/** @var MagedIn_Affiliates_Block_Adminhtml_Sales_Order_View_Tab_Affiliate $this */
+?>
+<?php if ($this->getOrderAffiliate() && $this->getOrderAffiliate()->getId()): ?>
+<div class="box-left">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo $this->__('Affiliate Information') ?></h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Affiliate Name') ?></label></td>
+                    <td class="value">
+                        <span><?php echo $this->getOrderAffiliate()->getName() ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Affiliate Description') ?></label></td>
+                    <td class="value">
+                        <span><?php echo $this->getOrderAffiliate()->getDescription() ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Affiliate Comment') ?></label></td>
+                    <td class="value">
+                        <span><?php echo $this->getOrderAffiliate()->getComment() ?></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="box-right">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo $this->__('Order Commission Information') ?></h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Commission Type') ?></label></td>
+                    <td class="value">
+                        <span><?php echo $this->getOrderAffiliate()->getSalesCommissionTypeLabel() ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Commission Amount') ?></label></td>
+                    <td class="value">
+                        <span>
+                            <?php if (MagedIn_Affiliates_Model_System_Config_Source_Commission_Type::PERCENT == $this->getOrderAffiliate()->getSalesCommissionType()): ?>
+                                <?php echo number_format((float) $this->getOrderAffiliate()->getSalesCommissionPercent(), 2).'%' ?>
+                            <?php elseif (MagedIn_Affiliates_Model_System_Config_Source_Commission_Type::FIXED == $this->getOrderAffiliate()->getSalesCommissionType()): ?>
+                                <?php echo $this->currency((float) $this->getOrderAffiliate()->getSalesCommissionFixed()) ?>
+                            <?php endif; ?>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<?php else: ?>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo $this->__('No Affiliate Found') ?></h4>
+        </div>
+        <div class="fieldset">
+            <span><?php echo $this->__('There is not affiliate related to this order.') ?></span>
+        </div>
+    </div>
+<?php endif; ?>

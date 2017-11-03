@@ -18,4 +18,13 @@
             <block type="magedin_affiliates/adminhtml_affiliate_edit" name="magedin.affiliate.edit"/>
         </reference>
     </adminhtml_affiliate_edit>
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTabAfter">
+                <tabId>order_affiliates</tabId>
+                <tab>magedin_affiliates/adminhtml_sales_order_view_tab_affiliate</tab>
+                <afterTabId>order_info</afterTabId>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
 </layout>
