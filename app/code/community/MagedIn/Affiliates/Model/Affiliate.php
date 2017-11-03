@@ -83,6 +83,12 @@ class MagedIn_Affiliates_Model_Affiliate extends MagedIn_Affiliates_Model_Abstra
             ->importAffiliateOrder($affiliateOrder)
             ->save();
 
+        $this->registerHistoryEvent(
+            MagedIn_Affiliates_Model_System_Config_Source_Balance_History_Action_Type::ORDER_INVOICED,
+            $affiliateOrder->getCommissionAmount(),
+            $this->__('Process New Order')
+        );
+
         return $this;
     }
 
@@ -118,7 +124,46 @@ class MagedIn_Affiliates_Model_Affiliate extends MagedIn_Affiliates_Model_Abstra
         $affiliateOrder->setStatus($status)
             ->save();
 
+        $this->registerHistoryEvent(
+            MagedIn_Affiliates_Model_System_Config_Source_Balance_History_Action_Type::ORDER_CANCELLED,
+            $affiliateOrder->getCommissionAmount(),
+            $this->__('Process Order Cancellation Status: %s', $status)
+        );
+
         return $this;
+    }
+
+
+    /**
+     * @param int      $action
+     * @param float    $balanceAmount
+     * @param null|int $adminUserId
+     * @param null|int $comment
+     *
+     * @return MagedIn_Affiliates_Model_History
+     */
+    public function registerHistoryEvent($action, $balanceAmount, $comment = null, $adminUserId = null)
+    {
+        /** @var MagedIn_Affiliates_Model_History $history */
+        $history = Mage::getModel('magedin_affiliates/history');
+
+        if (empty($adminUserId) && Mage::app()->getStore()->isAdmin()) {
+            /** @var Mage_Admin_Model_User $user */
+            $user = Mage::getSingleton('admin/session')->getUser();
+
+            if ($user && $user->getId()) {
+                $adminUserId = $user->getId();
+            }
+        }
+
+        $history->setAffiliate($this)
+            ->setAction($action)
+            ->setBalanceAmount((float) $balanceAmount)
+            ->setAdminUserId((int) $adminUserId)
+            ->setComment($comment)
+            ->save();
+
+        return $history;
     }
 
 }
