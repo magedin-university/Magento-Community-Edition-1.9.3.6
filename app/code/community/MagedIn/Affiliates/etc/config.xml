@@ -74,6 +74,14 @@
                     </magedin_affiliates_assign_affiliate_query_parameter>
                 </observers>
             </controller_action_predispatch>
+            <sales_quote_collect_totals_before>
+                <observers>
+                    <magedin_affiliates_assign_affiliate_to_quote>
+                        <class>magedin_affiliates/observer</class>
+                        <method>assignAffiliateToQuote</method>
+                    </magedin_affiliates_assign_affiliate_to_quote>
+                </observers>
+            </sales_quote_collect_totals_before>
         </events>
     </frontend>
     <adminhtml>

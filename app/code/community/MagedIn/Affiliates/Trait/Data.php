@@ -160,10 +160,15 @@ trait MagedIn_Affiliates_Trait_Data
      *
      * @return MagedIn_Affiliates_Model_Affiliate
      */
-    protected function getAffiliate($affiliateId)
+    protected function getAffiliate($affiliateId = null)
     {
         /** @var MagedIn_Affiliates_Model_Affiliate $affiliate */
         $affiliate = Mage::getModel('magedin_affiliates/affiliate');
+
+        if (empty($affiliateId)) {
+            $hash        = $this->getCookie()->get(MagedIn_Affiliates_Model_Affiliate_Query_Param::COOKIE_CODE);
+            $affiliateId = $this->_getAffiliateQueryParam()->getAffiliateId($hash);
+        }
 
         if ($affiliateId) {
             $affiliate->load($affiliateId);
