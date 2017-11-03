@@ -104,4 +104,21 @@ abstract class MagedIn_Affiliates_Controller_Adminhtml_Action extends Mage_Admin
         return $affiliateData;
     }
 
+
+    /**
+     * @return $this
+     */
+    protected function _grid()
+    {
+        $affiliateId = $this->getRequest()->getParam('id');
+        $this->_getAffiliateModel($affiliateId);
+
+        $handle = $this->getFullActionName();
+
+        $this->loadLayout($handle);
+        $this->renderLayout();
+
+        return $this;
+    }
+
 }

@@ -6,7 +6,7 @@
 
 $this->startSetup();
 
-$conn->addColumn($this->getTable('magedin_affiliates/order'), 'status', [
+$conn->addColumn($this->getTable('magedin_affiliates/order'), 'commission_status', [
     'nullable' => true,
     'unsigned' => true,
     'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,

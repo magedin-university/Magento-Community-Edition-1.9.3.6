@@ -18,7 +18,7 @@
  * @method $this setCreatedAt(string $dateTime)
  * @method $this setUpdatedAt(string $dateTime)
  * @method $this setIsLoaded(bool $flag)
- * @method $this setStatus(string $status)
+ * @method $this setCommissionStatus(string $status)
  *
  * @method int    getAffiliateId()
  * @method int    getOrderId()
@@ -35,7 +35,7 @@
  * @method string getCreatedAt()
  * @method string getUpdatedAt()
  * @method bool   getIsLoaded()
- * @method string getStatus()
+ * @method string getCommissionStatus()
  */
 class MagedIn_Affiliates_Model_Order extends MagedIn_Affiliates_Model_Abstract
 {
@@ -60,6 +60,18 @@ class MagedIn_Affiliates_Model_Order extends MagedIn_Affiliates_Model_Abstract
     {
         $this->_init('magedin_affiliates/order');
         parent::_construct();
+    }
+
+
+    /**
+     * @param string $status
+     *
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->setCommissionStatus($status);
+        return $this;
     }
 
 

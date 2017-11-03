@@ -25,6 +25,24 @@ class MagedIn_Affiliates_Block_Adminhtml_Affiliate_Edit_Tabs extends Mage_Adminh
             'content' => $main->toHtml(),
         ]);
 
+        $this->addTab('balance_amount', [
+            'label' => $this->__('Balance Amount'),
+            'class' => 'ajax',
+            'url'   => $this->getUrl('*/affiliate/balance', ['_current' => true])
+        ]);
+
+        $this->addTab('orders', [
+            'label' => $this->__('Orders'),
+            'class' => 'ajax',
+            'url'   => $this->getUrl('*/affiliate/orders', ['_current' => true])
+        ]);
+
+        $this->addTab('history', [
+            'label' => $this->__('History'),
+            'class' => 'ajax',
+            'url'   => $this->getUrl('*/affiliate/history', ['_current' => true])
+        ]);
+
         parent::_prepareLayout();
 
         return $this;

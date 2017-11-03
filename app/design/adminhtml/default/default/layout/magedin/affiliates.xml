@@ -10,6 +10,21 @@
             <block type="magedin_affiliates/adminhtml_affiliate_grid" name="magedin.affiliate.grid"/>
         </block>
     </adminhtml_affiliate_grid>
+    <adminhtml_affiliate_balance>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="magedin_affiliates/adminhtml_affiliate_edit_tab_balance" name="magedin.affiliate.balance.form"/>
+        </block>
+    </adminhtml_affiliate_balance>
+    <adminhtml_affiliate_orders>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="magedin_affiliates/adminhtml_affiliate_edit_tab_orders" name="magedin.affiliate.orders.grid"/>
+        </block>
+    </adminhtml_affiliate_orders>
+    <adminhtml_affiliate_history>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="magedin_affiliates/adminhtml_affiliate_edit_tab_history" name="magedin.affiliate.history.grid"/>
+        </block>
+    </adminhtml_affiliate_history>
     <adminhtml_affiliate_edit>
         <reference name="left">
             <block type="magedin_affiliates/adminhtml_affiliate_edit_tabs" name="magedin.affiliate.edit.tabs"/>

@@ -3,6 +3,10 @@
 class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliates_Controller_Adminhtml_Action
 {
 
+    use MagedIn_Affiliates_Trait_Convertor,
+        MagedIn_Affiliates_Trait_Currency;
+
+
     /**
      * Affiliates Grid.
      */
@@ -98,6 +102,28 @@ class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliate
             $this->_redirect('*/*/edit', $params);
         }
 
+        $balanceData   = $this->getRequest()->getPost('balance');
+        $balanceAmount = (float) $balanceData['balance_amount'];
+
+        if ($affiliate->getBalance()->getBalanceAmount() <> $balanceAmount) {
+            $oldBalanceAmount = $affiliate->getBalance()->getBalanceAmount();
+
+            $affiliate->getBalance()
+                ->setBaseBalanceAmount($this->_convertToBasePrice($balanceAmount))
+                ->setBalanceAmount($balanceAmount)
+                ->save();
+
+            $affiliate->registerHistoryEvent(
+                MagedIn_Affiliates_Model_System_Config_Source_Balance_History_Action_Type::MANUAL_ADJUSTMENT,
+                $balanceAmount,
+                $this->__(
+                    'Manual adjustment. Balance before adjustment: %s (%s)',
+                    $this->currency($oldBalanceAmount),
+                    $this->currency($balanceAmount - $oldBalanceAmount)
+                )
+            );
+        }
+
         $this->_redirect('*/*');
     }
 
@@ -132,10 +158,34 @@ class MagedIn_Affiliates_Adminhtml_AffiliateController extends MagedIn_Affiliate
      */
     public function gridAction()
     {
-        $handle = $this->getFullActionName();
+        $this->_grid();
+    }
 
-        $this->loadLayout($handle);
-        $this->renderLayout();
+
+    /**
+     * Balance Action
+     */
+    public function balanceAction()
+    {
+        $this->_grid();
+    }
+
+
+    /**
+     * Orders Action
+     */
+    public function ordersAction()
+    {
+        $this->_grid();
+    }
+
+
+    /**
+     * History Action
+     */
+    public function historyAction()
+    {
+        $this->_grid();
     }
 
 }
